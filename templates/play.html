@@ -1,0 +1,369 @@
+﻿<!DOCTYPE html>
+
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        #categoriesContainer {
+            display: none; /* Initially hide the container */
+            display: flex; /* Use flexbox for layout */
+            justify-content: center; /* Distribute space evenly around items */
+            align-items: start; /* Align items to the start of the flex container */
+            flex-wrap: wrap; /* Allow items to wrap if needed */
+        }
+        .category {
+            display: flex; /* Make each category a flex container */
+            flex-direction: column; /* Stack label and input vertically */
+            align-items: center; /* Center-align items vertically */
+            margin: 10px; /* Add some margin around each category */
+        }
+        .category input, .category label {
+        width: 120px; /* Initial width, can be adjusted with JavaScript */
+        text-align: center;
+        font-size: 30px;
+        }
+        button {
+            margin-top: 30px; /* Space between button and categories */
+        }
+    </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="StyleSheet.css">
+</head>
+<body>
+    <div class="landingPageHeading">
+        <h1>ארץ עיר</h1>
+    </div>
+    <div class="landingPageSubHeading">
+        <h2>גגגהתחלת משחק</h2>
+        <button onclick="startActivities()">הגרל אות!</button>
+        <style>
+            #timerContainer, #tip {
+                display: none; /* Initially hide the timer */
+            }
+        </style>
+        <p id="displayLetter"></p>
+        <div id="timerContainer">
+            הזמן רץ: <span id="timer">0</span> שניות
+        </div>
+    <script>
+        let intervalId = null;
+
+        function startActivities() {
+            generateRandomLetter();
+            startTimer();
+            document.getElementById("timerContainer").style.display = "block"; // Display the timer
+            document.getElementById("tip").style.display = "block"; // Display the tip
+        }
+
+        function generateRandomLetter() {
+            const alphabet = "אבגדהוזחטיכלמנסעפצקרשת";
+            const randomIndex = Math.floor(Math.random() * alphabet.length);
+            const randomLetter = alphabet[randomIndex];
+            document.getElementById("displayLetter").innerHTML = randomLetter;
+        }
+
+
+        function startTimer() {
+            let time = 0;
+            document.getElementById("timer").textContent = time;
+
+        // Clear existing timer to prevent multiple timers running simultaneously
+            if (intervalId !== null) {
+                clearInterval(intervalId);
+            }
+
+            intervalId = setInterval(() => {
+            time++;
+            document.getElementById("timer").textContent = time;
+            }, 1000);
+        }
+    </script>
+
+    <div id="categoriesContainer">
+        <div class="category">
+            <label for="country">ארץ</label>
+            <input type="text" id="country" name="country">
+            <div id="foundCountry" style="display: none;">
+                <img src="https://cdn.vectorstock.com/i/1000v/49/99/check-mark-symbol-or-tick-vector-45244999.jpg" style="width: 50px; height: 50px;">
+            </div>
+            <div id="notFoundCountry" style="display: none;">
+                <img src="https://cliply.co/wp-content/uploads/2021/07/372107370_CROSS_MARK_400.png" style="width: 50px; height: 50px;">
+            </div>
+        </div>
+        <div class="category">
+            <label for="city">עיר</label>
+            <input type="text" id="city" name="city">
+            <div id="foundCity" style="display: none;">
+                <img src="https://cdn.vectorstock.com/i/1000v/49/99/check-mark-symbol-or-tick-vector-45244999.jpg" style="width: 50px; height: 50px;">
+            </div>
+            <div id="notFoundCity" style="display: none;">
+                <img src="https://cliply.co/wp-content/uploads/2021/07/372107370_CROSS_MARK_400.png" style="width: 50px; height: 50px;">
+            </div>
+        </div>
+        <div class="category">
+            <label for="animal">חי</label>
+            <input type="text" id="animal" name="animal">
+            <div id="foundAnimal" style="display: none;">
+                <img src="https://cdn.vectorstock.com/i/1000v/49/99/check-mark-symbol-or-tick-vector-45244999.jpg" style="width: 50px; height: 50px;">
+            </div>
+            <div id="notFoundAnimal" style="display: none;">
+                <img src="https://cliply.co/wp-content/uploads/2021/07/372107370_CROSS_MARK_400.png" style="width: 50px; height: 50px;">
+            </div>
+        </div>
+        <div class="category">
+            <label for="plant">צומח</label>
+            <input type="text" id="plant" name="plant">
+            <div id="foundPlant" style="display: none;">
+                <img src="https://cdn.vectorstock.com/i/1000v/49/99/check-mark-symbol-or-tick-vector-45244999.jpg" style="width: 50px; height: 50px;">
+            </div>
+            <div id="notFoundPlant" style="display: none;">
+                <img src="https://cliply.co/wp-content/uploads/2021/07/372107370_CROSS_MARK_400.png" style="width: 50px; height: 50px;">
+            </div>
+        </div>
+        <div class="category">
+            <label for="plant">דומם</label>
+            <input type="text" id="object" name="object">
+            <div id="foundObject" style="display: none;">
+                <img src="https://cdn.vectorstock.com/i/1000v/49/99/check-mark-symbol-or-tick-vector-45244999.jpg" style="width: 50px; height: 50px;">
+            </div>
+            <div id="notFoundObject" style="display: none;">
+                <img src="https://cliply.co/wp-content/uploads/2021/07/372107370_CROSS_MARK_400.png" style="width: 50px; height: 50px;">
+            </div>
+        </div>
+        <div class="category">
+            <label for="plant">בן</label>
+            <input type="text" id="boy" name="boy">
+            <div id="foundBoy" style="display: none;">
+                <img src="https://cdn.vectorstock.com/i/1000v/49/99/check-mark-symbol-or-tick-vector-45244999.jpg" style="width: 50px; height: 50px;">
+            </div>
+            <div id="notFoundBoy" style="display: none;">
+                <img src="https://cliply.co/wp-content/uploads/2021/07/372107370_CROSS_MARK_400.png" style="width: 50px; height: 50px;">
+            </div>
+        </div>
+        <div class="category">
+            <label for="plant">בת</label>
+            <input type="text" id="girl" name="girl">
+            <div id="foundGirl" style="display: none;">
+                <img src="https://cdn.vectorstock.com/i/1000v/49/99/check-mark-symbol-or-tick-vector-45244999.jpg" style="width: 50px; height: 50px;">
+            </div>
+            <div id="notFoundGirl" style="display: none;">
+                <img src="https://cliply.co/wp-content/uploads/2021/07/372107370_CROSS_MARK_400.png" style="width: 50px; height: 50px;">
+            </div>
+        </div>
+        <div class="category">
+            <label for="plant">מקצוע</label>
+            <input type="text" id="prof" name="prof">
+            <div id="foundProf" style="display: none;">
+                <img src="https://cdn.vectorstock.com/i/1000v/49/99/check-mark-symbol-or-tick-vector-45244999.jpg" style="width: 50px; height: 50px;">
+            </div>
+            <div id="notFoundProf" style="display: none;">
+                <img src="https://cliply.co/wp-content/uploads/2021/07/372107370_CROSS_MARK_400.png" style="width: 50px; height: 50px;">
+            </div>
+        </div>
+        <div class="category">
+            <label for="plant">אישיות</label>
+            <input type="text" id="celeb" name="celeb">
+            <div id="foundCeleb" style="display: none;">
+                <img src="https://cdn.vectorstock.com/i/1000v/49/99/check-mark-symbol-or-tick-vector-45244999.jpg" style="width: 50px; height: 50px;">
+            </div>
+            <div id="notFoundCeleb" style="display: none;">
+                <img src="https://cliply.co/wp-content/uploads/2021/07/372107370_CROSS_MARK_400.png" style="width: 50px; height: 50px;">
+            </div>
+        </div>
+    </div>
+    <br>
+    <div id="tip">
+        לחץ TAB כדי לעבור מהר בין התאים
+    </div>
+
+    <div>
+        <input type="button" id="sendButton" style="background: url('https://cdn-icons-png.flaticon.com/512/346/346072.png') no-repeat center; 
+        width: 50px; height: 50px; background-size: contain; cursor: pointer; border: none;" onclick="sendForm()">
+    </div>
+    
+    <script>
+    function startGame() {
+        document.getElementById("categoriesContainer").style.display = "flex"; // Change display to flex to show the container
+    }
+    </script>
+    
+    <script>
+        function checkStartingLetter(){
+
+        }
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    
+    <script>
+        async function sendForm(){
+            var country = document.getElementById('country');
+            var city = document.getElementById('city');
+            var animal = document.getElementById('animal');
+            
+            let startingLetter = document.getElementById("displayLetter").innerHTML
+            console.log(startingLetter);
+
+            var trCountry = await translate(country.value);
+            var trCity= await translate(city.value);
+            var trAnimal = await translate(animal.value);
+
+            const firstCountry = country.value.charAt(0);
+            console.log(firstCountry)
+            const firstCity = city.value.charAt(0);
+            const firstAnimal = animal.value.charAt(0);
+
+            if(startingLetter === firstCountry && await check_valid("country", "countries", trCountry)){
+                console.log("first leeter country good");
+                document.getElementById("foundCountry").style.display = "block"; // Display the v
+            }
+            else
+                document.getElementById("notFoundCountry").style.display = "block"; // Display the x
+            
+            if(startingLetter === firstCity && await check_valid("city", "citiesInIsrael", trCity)){
+                console.log("first leeter city good")
+                document.getElementById("foundCity").style.display = "block"; // Display the v
+            }
+            else
+                document.getElementById("notFoundCity").style.display = "block"; // Display the x
+
+            if(startingLetter === firstAnimal && await check_valid("animal", "animals", trAnimal)){
+                console.log("first leeter city good")
+                document.getElementById("foundAnimal").style.display = "block"; // Display the v
+            }
+            else
+                document.getElementById("notFoundAnimal").style.display = "block"; // Display the x
+        }
+
+        async function translate(word){
+            const encodedParams = new URLSearchParams();
+            encodedParams.set('from', 'he');
+            encodedParams.set('to', 'en');
+            encodedParams.set('text', word);
+
+            const options = {
+            method: 'POST',
+            url: 'https://google-translate113.p.rapidapi.com/api/v1/translator/text',
+            headers: {
+                'content-type': 'application/x-www-form-urlencoded',
+                'X-RapidAPI-Key': '5b4b303f2amsh7b658041f443c80p189bd8jsn6a61e188b3f0',
+                'X-RapidAPI-Host': 'google-translate113.p.rapidapi.com'
+            },
+            data: encodedParams,
+            };
+
+            try {
+                const response = await axios.request(options);
+                console.log(response.data);
+                console.log(response.data.trans);
+                //country.value = response.data.trans; // change the text in the field
+                return translated= response.data.trans;
+                //check_valid(translatedCountry);
+            } catch (error) {
+                console.error(error);
+            }
+        }
+
+        async function check_valid(collection, field, value) {            
+            try {
+                const response = await axios.get('http://localhost:5000/checkvalid', {
+                    params: { collection, field, value } });
+                if (response.data.valid) {
+                    //console.log("true");
+                    return true;
+                } else {
+                    //console.log("false");
+                    return false;
+                }
+            } catch (error) {
+                console.error('Error:', error);
+            }
+        }
+
+        function submitForm() {
+            // Get the selected radio button value
+            var radioValue = document.querySelector('input[name="countryCityRadio"]:checked');
+
+            // Check if a radio button is selected
+            if (radioValue) {
+                radioValue = radioValue.value;
+            } else {
+                alert('Please select a category.');
+                return;
+            }
+
+            // Map radio values to corresponding column names
+            var columnMap = {
+                'country': 'CountryName',
+                'city': 'CityName',
+                'animal': 'AnimalName',
+                'plant': 'PlantName',
+                'object': 'ObjectName',
+                'boyName': 'BName',
+                'girlName': 'GName',
+                'profession': 'ProfessionName',
+                'celebrity': 'CelebrityName'
+            };
+
+            var columnName = columnMap[radioValue];
+
+            // Get the text input value
+            var textInputValue = document.getElementById('letter').value;
+
+            var isHebrew = /^[\u0590-\u05FF]+$/.test(textInputValue);
+
+            if (!isHebrew) {
+                alert('Please enter a valid Hebrew letter.');
+                return;
+            }
+
+            // Prevent default form submission
+            event.preventDefault();
+
+            // Create an XMLHttpRequest object
+            var xhr = new XMLHttpRequest();
+
+            // Open a connection
+            xhr.open("POST", "processRequest.php", true);
+
+            // Set the request header
+            xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
+            // Define what happens on successful data submission
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    // Parse the JSON response
+                    var data = JSON.parse(xhr.responseText);
+
+                    // Get the container where results will be displayed
+                    var resultsContainer = document.getElementById('resultsContainer');
+                    resultsContainer.innerHTML = ''; // Clear previous results
+
+                    // Check if data is not empty
+                    if (data.length > 0) {
+                        // Create and append elements for each item in the response
+                        data.forEach(function (item) {
+                            var element = document.createElement('div');
+                            element.textContent = item[columnName]; // Use the dynamic column name
+                            resultsContainer.appendChild(element);
+                        });
+                    } else {
+                        resultsContainer.innerHTML = 'No results found';
+                    }
+                }
+            };
+
+            // Send the collected data as JSON
+            xhr.send("radioValue=" + radioValue + "&textInputValue=" + textInputValue);
+        }
+    </script>
+
+
+
+</body>
+</html>
